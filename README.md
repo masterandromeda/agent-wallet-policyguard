@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Agent Wallet – PolicyGuard
 
-## Getting Started
+> **ERC-4337 Account Abstraction Smart Wallet with AI Agent Policy Enforcement**  
+> Owner-defined spending policies enforced at the smart-contract validation layer — not in the UI or AI model.
 
-First, run the development server:
+---
+
+## ⚠ Current Status: Foundation / Dashboard Shell
+
+This is the **Phase 1 foundation build**. The following is working:
+
+| What works now | Status |
+|---|---|
+| Next.js 15 + TypeScript + Tailwind CSS project | ✅ |
+| Premium fintech dashboard UI with dark navy sidebar | ✅ |
+| Overview page with stats, charts, activity feed | ✅ |
+| AI Agent Management page with budgets, permissions | ✅ |
+| Policy Management page with rule visualization | ✅ |
+| Owner Approval Center with pending/resolved flows | ✅ |
+| Transaction History & Audit Trail with full table | ✅ |
+| Risk Monitoring with explainable alerts | ✅ |
+| Settings page with wallet/contract configuration | ✅ |
+| All TypeScript types for the full domain model | ✅ |
+| REST API route scaffolding (`/api/agents`, `/api/transactions`, `/api/policies`) | ✅ |
+| SSE endpoint (`/api/events`) for real-time architecture | ✅ |
+| Prisma schema (SQLite dev / PostgreSQL prod) | ✅ |
+| Solidity contract placeholders (SmartWallet, Paymaster) | ✅ |
+| `.env.example` with all required variables | ✅ |
+
+| What is **NOT** yet working | Phase |
+|---|---|
+| Real blockchain transactions | Phase 2 |
+| ERC-4337 smart contracts deployed | Phase 2 |
+| Wallet connection (MetaMask / WalletConnect) | Phase 2 |
+| Real AI agent integration | Phase 3 |
+| Live real-time SSE from blockchain events | Phase 2 |
+| Database migrations and real data persistence | Phase 2 |
+
+**All data shown in the dashboard is clearly labeled as SIMULATED DEMO DATA.**
+
+---
+
+## Quick Start
 
 ```bash
+# 1. Install dependencies
+npm install
+
+# 2. Copy env file
+cp .env.example .env.local
+
+# 3. Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 4. Open browser
+# http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── (dashboard)/        # Dashboard route group (sidebar layout)
+│   │   ├── layout.tsx      # Sidebar shell
+│   │   ├── page.tsx        # Overview
+│   │   ├── agents/         # AI Agent Management
+│   │   ├── policies/       # Policy Management
+│   │   ├── approvals/      # Owner Approval Center
+│   │   ├── transactions/   # Transaction History & Audit Trail
+│   │   ├── risk/           # Risk Monitoring
+│   │   └── settings/       # Settings
+│   └── api/
+│       ├── agents/         # GET /api/agents
+│       ├── transactions/   # GET /api/transactions
+│       ├── policies/       # GET /api/policies
+│       └── events/         # GET /api/events (SSE)
+├── components/
+│   ├── layout/             # Sidebar, TopBar
+│   ├── ui/                 # Shared components (Card, Badge, Button, Table…)
+│   └── charts/             # Recharts wrappers
+├── lib/
+│   ├── types.ts            # All TypeScript domain types
+│   ├── mock-data.ts        # CLEARLY LABELED simulated data
+│   └── utils.ts            # Formatting, color utilities
+contracts/
+├── SmartWallet.sol         # ERC-4337 account (placeholder)
+└── PolicyGuardPaymaster.sol # Policy enforcement (placeholder)
+prisma/
+└── schema.prisma           # DB schema (ready for migration)
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Security Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+AI Agent (UserOperation)
+    ↓
+ERC-4337 EntryPoint
+    ↓
+PolicyGuardPaymaster.validatePaymasterUserOp()
+    ↓ Checks all policy rules on-chain
+    ↓ ─ Agent suspended? → REJECT
+    ↓ ─ Amount > per-tx limit? → REJECT
+    ↓ ─ Daily limit exceeded? → REJECT
+    ↓ ─ Unapproved recipient? → REJECT
+    ↓ ─ Unapproved contract? → REJECT
+    ↓ ─ Requires owner approval? → REJECT (pending approval)
+    ↓
+Transaction executed
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Key principle:** AI risk scores are advisory signals. They cannot override on-chain policy enforcement.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Phase 2 – Smart Contract Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Install Hardhat: `npm install --save-dev hardhat`
+2. Complete `contracts/SmartWallet.sol` (implement `validateUserOp`)
+3. Complete `contracts/PolicyGuardPaymaster.sol` (implement all policy checks)
+4. Deploy to Sepolia: `npx hardhat run scripts/deploy.ts --network sepolia`
+5. Update `.env.local` with deployed contract addresses
+6. Connect ethers.js / viem in frontend
+
+## Phase 3 – AI Agent Integration
+
+1. Define agent execution environment (LangChain / AutoGen / custom)
+2. Agents submit ERC-4337 UserOperations to the bundler
+3. Frontend connects to bundler for live transaction status
+4. SSE endpoint (`/api/events`) receives bundler webhooks
+
+---
+
+## Tech Stack
+
+- **Frontend:** Next.js 15, TypeScript, Tailwind CSS, Recharts
+- **Backend:** Next.js API Routes (Node.js)
+- **Database:** SQLite (dev) / PostgreSQL (prod) via Prisma
+- **Blockchain:** Ethereum Sepolia, ERC-4337, Solidity 0.8.23
+- **Real-time:** Server-Sent Events (architecture ready)
+- **Smart Wallet:** ERC-4337 Account Abstraction + Custom Paymaster

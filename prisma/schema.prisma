@@ -1,0 +1,171 @@
+// Prisma Schema – Agent Wallet PolicyGuard
+// Database: SQLite (development) / PostgreSQL (production)
+// Status: SCHEMA READY – not yet migrated or seeded
+// Run: npx prisma migrate dev --name init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Users ────────────────────────────────────────────────────
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  role          String    // "owner" | "customer" | "agent"
+  walletAddress String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  agents        Agent[]
+  policies      Policy[]
+  approvals     ApprovalRequest[]
+}
+
+// ─── AI Agents ────────────────────────────────────────────────
+model Agent {
+  id            String    @id @default(cuid())
+  name          String
+  description   String
+  status        String    @default("pending") // "active"|"paused"|"suspended"|"pending"
+  ownerId       String
+  walletAddress String    @unique
+  riskScore     Int       @default(0)         // 0-100, advisory only
+  lastActive    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  owner         User      @relation(fields: [ownerId], references: [id])
+  permissions   AgentPermission[]
+  budget        SpendingBudget?
+  transactions  Transaction[]
+  approvals     ApprovalRequest[]
+  riskAlerts    RiskAlert[]
+}
+
+model AgentPermission {
+  id          String    @id @default(cuid())
+  agentId     String
+  type        String    // "transfer"|"contract_call"|"swap"|"bridge"|"approve"
+  description String
+  granted     Boolean   @default(false)
+  expiresAt   DateTime?
+
+  agent       Agent     @relation(fields: [agentId], references: [id])
+}
+
+model SpendingBudget {
+  id               String @id @default(cuid())
+  agentId          String @unique
+  dailyLimitUSD    Float
+  dailySpentUSD    Float  @default(0)
+  monthlyLimitUSD  Float
+  monthlySpentUSD  Float  @default(0)
+  perTxLimitUSD    Float
+
+  agent            Agent  @relation(fields: [agentId], references: [id])
+}
+
+// ─── Policies ─────────────────────────────────────────────────
+model Policy {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  ownerId     String
+  status      String    @default("active") // "active"|"inactive"|"expired"
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  expiresAt   DateTime?
+
+  owner       User      @relation(fields: [ownerId], references: [id])
+  rules       PolicyRule[]
+  agents      PolicyAgent[]
+}
+
+model PolicyRule {
+  id        String  @id @default(cuid())
+  policyId  String
+  type      String  // "max_tx_amount"|"daily_limit"|...
+  label     String
+  value     String  // JSON-encoded value
+  enabled   Boolean @default(true)
+
+  policy    Policy  @relation(fields: [policyId], references: [id])
+}
+
+model PolicyAgent {
+  policyId  String
+  agentId   String
+
+  policy    Policy  @relation(fields: [policyId], references: [id])
+
+  @@id([policyId, agentId])
+}
+
+// ─── Transactions ─────────────────────────────────────────────
+model Transaction {
+  id           String    @id @default(cuid())
+  hash         String?   // on-chain tx hash; null until mined
+  agentId      String
+  fromAddress  String
+  toAddress    String
+  toLabel      String?
+  amountUSD    Float
+  amountETH    Float?
+  status       String    // "approved"|"blocked"|"pending"|"failed"
+  policyId     String?
+  blockReason  String?
+  riskScore    Int
+  riskFlags    String    @default("[]") // JSON array
+  network      String    // "sepolia"|"mainnet"|"simulated"
+  blockNumber  Int?
+  gasUsed      Int?
+  userOpHash   String?   // ERC-4337 UserOperation hash
+  isSimulated  Boolean   @default(true)
+  timestamp    DateTime  @default(now())
+
+  agent        Agent     @relation(fields: [agentId], references: [id])
+}
+
+// ─── Approval Requests ────────────────────────────────────────
+model ApprovalRequest {
+  id              String    @id @default(cuid())
+  agentId         String
+  ownerId         String
+  transactionId   String?
+  reason          String
+  requestedAmount Float
+  toAddress       String
+  toLabel         String?
+  status          String    @default("pending") // "pending"|"approved"|"rejected"|"expired"
+  policyViolations String   @default("[]") // JSON array
+  riskScore       Int
+  requestedAt     DateTime  @default(now())
+  respondedAt     DateTime?
+  expiresAt       DateTime
+  notes           String?
+
+  agent           Agent     @relation(fields: [agentId], references: [id])
+  owner           User      @relation(fields: [ownerId], references: [id])
+}
+
+// ─── Risk Alerts ──────────────────────────────────────────────
+model RiskAlert {
+  id              String    @id @default(cuid())
+  agentId         String?
+  transactionId   String?
+  level           String    // "low"|"medium"|"high"|"critical"
+  title           String
+  description     String
+  explanation     String    // Explainability text
+  timestamp       DateTime  @default(now())
+  acknowledged    Boolean   @default(false)
+  policyViolated  String?
+
+  agent           Agent?    @relation(fields: [agentId], references: [id])
+}

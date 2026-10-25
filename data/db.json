@@ -1,0 +1,943 @@
+{
+  "users": [
+    {
+      "id": "usr_01",
+      "name": "Alexandra Chen",
+      "email": "alex.chen@enterprise.io",
+      "role": "owner",
+      "walletAddress": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+      "createdAt": "2024-01-10T09:00:00Z"
+    },
+    {
+      "id": "usr_02",
+      "name": "Marcus Rivera",
+      "email": "marcus@enterprise.io",
+      "role": "customer",
+      "walletAddress": "0x8626f6940E2eb28930eFb4CeF49B2d1F2C9C1199",
+      "createdAt": "2024-02-14T11:30:00Z"
+    }
+  ],
+  "agents": [
+    {
+      "id": "agt_01",
+      "name": "PayBot Alpha",
+      "description": "Automated supplier payment processing agent",
+      "status": "active",
+      "ownerId": "usr_01",
+      "walletAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "permissions": [
+        {
+          "id": "p1",
+          "type": "transfer",
+          "description": "Send ETH/ERC-20 transfers",
+          "granted": true,
+          "expiresAt": "2025-12-31T23:59:59Z"
+        },
+        {
+          "id": "p2",
+          "type": "contract_call",
+          "description": "Interact with approved contracts",
+          "granted": true,
+          "expiresAt": "2025-12-31T23:59:59Z"
+        },
+        {
+          "id": "p3",
+          "type": "swap",
+          "description": "Token swaps on approved DEXes",
+          "granted": false
+        },
+        {
+          "id": "p4",
+          "type": "approve",
+          "description": "ERC-20 token approvals",
+          "granted": false
+        }
+      ],
+      "spendingBudget": {
+        "dailyLimitUSD": 5000,
+        "dailySpentUSD": 1450,
+        "monthlyLimitUSD": 50000,
+        "monthlySpentUSD": 18600,
+        "perTxLimitUSD": 2000
+      },
+      "riskScore": 18,
+      "lastActive": "2026-10-24T14:21:18.157Z",
+      "createdAt": "2024-03-01T10:00:00Z",
+      "tags": [
+        "payments",
+        "suppliers",
+        "automated"
+      ]
+    },
+    {
+      "id": "agt_02",
+      "name": "TreasuryBot",
+      "description": "Treasury management and yield optimization",
+      "status": "active",
+      "ownerId": "usr_01",
+      "walletAddress": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+      "permissions": [
+        {
+          "id": "p5",
+          "type": "transfer",
+          "description": "Send ETH/ERC-20 transfers",
+          "granted": true,
+          "expiresAt": "2025-06-30T23:59:59Z"
+        },
+        {
+          "id": "p6",
+          "type": "swap",
+          "description": "Token swaps on approved DEXes",
+          "granted": true,
+          "expiresAt": "2025-06-30T23:59:59Z"
+        },
+        {
+          "id": "p7",
+          "type": "contract_call",
+          "description": "DeFi protocol interactions",
+          "granted": true,
+          "expiresAt": "2025-06-30T23:59:59Z"
+        },
+        {
+          "id": "p8",
+          "type": "bridge",
+          "description": "Cross-chain bridge operations",
+          "granted": false
+        }
+      ],
+      "spendingBudget": {
+        "dailyLimitUSD": 25000,
+        "dailySpentUSD": 18250,
+        "monthlyLimitUSD": 200000,
+        "monthlySpentUSD": 76700,
+        "perTxLimitUSD": 10000
+      },
+      "riskScore": 42,
+      "lastActive": "2025-01-15T15:01:00Z",
+      "createdAt": "2024-04-15T08:00:00Z",
+      "tags": [
+        "treasury",
+        "yield",
+        "defi"
+      ]
+    },
+    {
+      "id": "agt_03",
+      "name": "InvoiceBot",
+      "description": "Invoice processing and micro-payment disbursement",
+      "status": "active",
+      "ownerId": "usr_01",
+      "walletAddress": "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65",
+      "permissions": [
+        {
+          "id": "p9",
+          "type": "transfer",
+          "description": "Send ETH/ERC-20 transfers",
+          "granted": true
+        },
+        {
+          "id": "p10",
+          "type": "approve",
+          "description": "ERC-20 token approvals",
+          "granted": true
+        }
+      ],
+      "spendingBudget": {
+        "dailyLimitUSD": 1000,
+        "dailySpentUSD": 0,
+        "monthlyLimitUSD": 15000,
+        "monthlySpentUSD": 4200,
+        "perTxLimitUSD": 500
+      },
+      "riskScore": 5,
+      "lastActive": "2026-10-24T14:42:31.839Z",
+      "createdAt": "2024-06-01T12:00:00Z",
+      "tags": [
+        "invoices",
+        "micro-payments"
+      ]
+    },
+    {
+      "id": "agt_04",
+      "name": "RogueTest",
+      "description": "SUSPENDED – anomalous behavior detected in testing",
+      "status": "suspended",
+      "ownerId": "usr_01",
+      "walletAddress": "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc",
+      "permissions": [],
+      "spendingBudget": {
+        "dailyLimitUSD": 0,
+        "dailySpentUSD": 0,
+        "monthlyLimitUSD": 0,
+        "monthlySpentUSD": 0,
+        "perTxLimitUSD": 0
+      },
+      "riskScore": 97,
+      "lastActive": "2025-01-10T22:44:00Z",
+      "createdAt": "2024-12-01T10:00:00Z",
+      "tags": [
+        "suspended",
+        "anomaly"
+      ]
+    }
+  ],
+  "policies": [
+    {
+      "id": "pol_01",
+      "name": "Supplier Payments Policy",
+      "description": "Controls supplier payment agent with strict per-tx and daily limits",
+      "ownerId": "usr_01",
+      "agentIds": [
+        "agt_01"
+      ],
+      "status": "active",
+      "rules": [
+        {
+          "id": "r1",
+          "type": "max_tx_amount",
+          "label": "Max per transaction",
+          "value": 2000,
+          "enabled": true
+        },
+        {
+          "id": "r2",
+          "type": "daily_limit",
+          "label": "Daily spending limit",
+          "value": 5000,
+          "enabled": true
+        },
+        {
+          "id": "r3",
+          "type": "monthly_limit",
+          "label": "Monthly spending limit",
+          "value": 50000,
+          "enabled": true
+        },
+        {
+          "id": "r4",
+          "type": "allowed_recipients",
+          "label": "Approved recipient addresses",
+          "value": [
+            "0xAbc...",
+            "0xDef...",
+            "0x123..."
+          ],
+          "enabled": true
+        },
+        {
+          "id": "r5",
+          "type": "time_window",
+          "label": "Operating hours (UTC)",
+          "value": "08:00-18:00",
+          "enabled": true
+        },
+        {
+          "id": "r6",
+          "type": "require_approval",
+          "label": "Require owner approval above $1,500",
+          "value": 1500,
+          "enabled": true
+        }
+      ],
+      "createdAt": "2024-03-01T10:00:00Z",
+      "updatedAt": "2025-01-10T08:00:00Z",
+      "expiresAt": "2025-12-31T23:59:59Z"
+    },
+    {
+      "id": "pol_02",
+      "name": "Treasury Operations Policy",
+      "description": "DeFi treasury management with enhanced oversight",
+      "ownerId": "usr_01",
+      "agentIds": [
+        "agt_02"
+      ],
+      "status": "active",
+      "rules": [
+        {
+          "id": "r7",
+          "type": "max_tx_amount",
+          "label": "Max per transaction",
+          "value": 10000,
+          "enabled": true
+        },
+        {
+          "id": "r8",
+          "type": "daily_limit",
+          "label": "Daily spending limit",
+          "value": 25000,
+          "enabled": true
+        },
+        {
+          "id": "r9",
+          "type": "allowed_contracts",
+          "label": "Approved smart contracts",
+          "value": [
+            "0xUniswapV3...",
+            "0xAave...",
+            "0xComp..."
+          ],
+          "enabled": true
+        },
+        {
+          "id": "r10",
+          "type": "allowed_functions",
+          "label": "Allowed contract functions",
+          "value": [
+            "swap",
+            "deposit",
+            "withdraw"
+          ],
+          "enabled": true
+        },
+        {
+          "id": "r11",
+          "type": "require_approval",
+          "label": "Require approval above $8,000",
+          "value": 8000,
+          "enabled": true
+        }
+      ],
+      "createdAt": "2024-04-15T08:00:00Z",
+      "updatedAt": "2025-01-08T16:00:00Z",
+      "expiresAt": "2025-06-30T23:59:59Z"
+    },
+    {
+      "id": "pol_03",
+      "name": "Invoice Disbursement Policy",
+      "description": "Micro-payment policy for invoice processing",
+      "ownerId": "usr_01",
+      "agentIds": [
+        "agt_03"
+      ],
+      "status": "inactive",
+      "rules": [
+        {
+          "id": "r12",
+          "type": "max_tx_amount",
+          "label": "Max per transaction",
+          "value": 500,
+          "enabled": true
+        },
+        {
+          "id": "r13",
+          "type": "daily_limit",
+          "label": "Daily spending limit",
+          "value": 1000,
+          "enabled": true
+        },
+        {
+          "id": "r14",
+          "type": "allowed_recipients",
+          "label": "Approved recipient addresses",
+          "value": [
+            "0xInv001...",
+            "0xInv002..."
+          ],
+          "enabled": true
+        }
+      ],
+      "createdAt": "2024-06-01T12:00:00Z",
+      "updatedAt": "2025-01-12T09:00:00Z"
+    },
+    {
+      "id": "pol_1792856297666_v0gzp",
+      "name": "Test Policy E2E",
+      "description": "Created by automated test",
+      "ownerId": "usr_01",
+      "agentIds": [
+        "agt_01"
+      ],
+      "status": "active",
+      "rules": [
+        {
+          "type": "max_tx_amount",
+          "label": "Max per TX",
+          "value": 300,
+          "enabled": true,
+          "id": "rule_1792856297666_nhssn"
+        },
+        {
+          "type": "daily_limit",
+          "label": "Daily limit",
+          "value": 1000,
+          "enabled": true,
+          "id": "rule_1792856297666_4zufj"
+        },
+        {
+          "type": "require_approval",
+          "label": "Approval threshold",
+          "value": 250,
+          "enabled": true,
+          "id": "rule_1792856297666_g9acx"
+        },
+        {
+          "type": "allowed_recipients",
+          "label": "Approved recipients",
+          "value": [
+            "0xApproved001",
+            "0xApproved002"
+          ],
+          "enabled": true,
+          "id": "rule_1792856297666_tg780"
+        }
+      ],
+      "createdAt": "2026-10-24T15:38:17.666Z",
+      "updatedAt": "2026-10-24T15:38:17.666Z"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "tx_001",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xAbcDef1234567890abcdef1234567890AbCdEf12",
+      "toLabel": "Supplier A",
+      "amountUSD": 850,
+      "amountETH": 0.289,
+      "status": "approved",
+      "policyId": "pol_01",
+      "policyName": "Supplier Payments Policy",
+      "riskScore": 12,
+      "riskFlags": [],
+      "network": "simulated",
+      "timestamp": "2025-01-15T14:30:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_002",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "fromAddress": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+      "toAddress": "0xUniswapV3Pool000000000000000000000000000",
+      "toLabel": "Uniswap V3",
+      "amountUSD": 9500,
+      "amountETH": 3.22,
+      "status": "approved",
+      "policyId": "pol_02",
+      "policyName": "Treasury Operations Policy",
+      "riskScore": 55,
+      "riskFlags": [
+        "Near approval threshold"
+      ],
+      "network": "simulated",
+      "timestamp": "2025-01-15T15:00:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_003",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xUnknown9999999999999999999999999999999999",
+      "toLabel": "UNKNOWN",
+      "amountUSD": 4800,
+      "status": "blocked",
+      "policyId": "pol_01",
+      "policyName": "Supplier Payments Policy",
+      "blockReason": "Recipient not in approved list; amount exceeds per-tx limit ($2,000)",
+      "riskScore": 88,
+      "riskFlags": [
+        "Unapproved recipient",
+        "Exceeds tx limit",
+        "Unusual hour"
+      ],
+      "network": "simulated",
+      "timestamp": "2025-01-15T11:22:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_004",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "fromAddress": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+      "toAddress": "0xAave0000000000000000000000000000000000001",
+      "toLabel": "Aave V3",
+      "amountUSD": 5200,
+      "amountETH": 1.76,
+      "status": "approved",
+      "policyId": "pol_02",
+      "policyName": "Treasury Operations Policy",
+      "riskScore": 22,
+      "riskFlags": [],
+      "network": "simulated",
+      "timestamp": "2025-01-15T10:15:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_005",
+      "agentId": "agt_03",
+      "agentName": "InvoiceBot",
+      "fromAddress": "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65",
+      "toAddress": "0xInv001000000000000000000000000000000000001",
+      "toLabel": "Contractor B",
+      "amountUSD": 320,
+      "status": "approved",
+      "policyId": "pol_03",
+      "policyName": "Invoice Disbursement Policy",
+      "riskScore": 5,
+      "riskFlags": [],
+      "network": "simulated",
+      "timestamp": "2025-01-14T16:45:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_006",
+      "agentId": "agt_04",
+      "agentName": "RogueTest",
+      "fromAddress": "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc",
+      "toAddress": "0xDrainContract0000000000000000000000000000",
+      "toLabel": "SUSPICIOUS CONTRACT",
+      "amountUSD": 99999,
+      "status": "blocked",
+      "blockReason": "Agent suspended; contract not approved; amount exceeds all limits",
+      "riskScore": 99,
+      "riskFlags": [
+        "Agent suspended",
+        "Unapproved contract",
+        "Drain pattern detected",
+        "Exceeds all limits"
+      ],
+      "network": "simulated",
+      "timestamp": "2025-01-10T22:44:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_007",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xDef0000000000000000000000000000000000001",
+      "toLabel": "Supplier B",
+      "amountUSD": 1750,
+      "status": "approved",
+      "policyId": "pol_01",
+      "riskScore": 8,
+      "riskFlags": [],
+      "network": "simulated",
+      "timestamp": "2025-01-13T09:30:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_008",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "fromAddress": "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
+      "toAddress": "0xCompound000000000000000000000000000000001",
+      "toLabel": "Compound",
+      "amountUSD": 12000,
+      "status": "blocked",
+      "blockReason": "Requires owner approval above $8,000 threshold",
+      "policyId": "pol_02",
+      "riskScore": 45,
+      "riskFlags": [
+        "Approval required"
+      ],
+      "network": "simulated",
+      "timestamp": "2025-01-13T14:00:00Z",
+      "isSimulated": true
+    },
+    {
+      "id": "tx_1792851678155_2cl0s",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xOpenAI0000000000000000000000000000000001",
+      "toLabel": "OpenAI API Credits",
+      "amountUSD": 200,
+      "status": "approved",
+      "riskScore": 10,
+      "riskFlags": [],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T14:21:18.155Z",
+      "requesterId": "cust_01",
+      "requesterName": "Marcus Rivera",
+      "purpose": "Monthly API credits for GPT-4 usage"
+    },
+    {
+      "id": "tx_1792856297727_khpsk",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xUnauthorized999",
+      "toLabel": "Unapproved Vendor",
+      "amountUSD": 100,
+      "status": "blocked",
+      "policyId": "pol_1792856297666_v0gzp",
+      "policyName": "Test Policy E2E",
+      "blockReason": "Transfer permission has expired; Policy \"Test Policy E2E\": Recipient not in allowed list",
+      "riskScore": 80,
+      "riskFlags": [
+        "Permission expired",
+        "Policy: recipient not allowed"
+      ],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T15:38:17.725Z",
+      "purpose": "Test: should be blocked - unapproved recipient"
+    },
+    {
+      "id": "tx_1792856297743_6m8cq",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xApproved001",
+      "toLabel": "Approved Vendor",
+      "amountUSD": 50,
+      "status": "blocked",
+      "policyId": "pol_1792856297666_v0gzp",
+      "policyName": "Test Policy E2E",
+      "blockReason": "Transfer permission has expired",
+      "riskScore": 65,
+      "riskFlags": [
+        "Permission expired"
+      ],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T15:38:17.742Z",
+      "purpose": "Test: approved recipient within limits"
+    },
+    {
+      "id": "tx_1792856297786_23yl9",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xApproved001",
+      "toLabel": "Approved Vendor",
+      "amountUSD": 400,
+      "status": "blocked",
+      "policyId": "pol_1792856297666_v0gzp",
+      "policyName": "Test Policy E2E",
+      "blockReason": "Transfer permission has expired; Policy \"Test Policy E2E\": Amount exceeds max $300",
+      "riskScore": 70,
+      "riskFlags": [
+        "Permission expired",
+        "Policy: max_tx_amount"
+      ],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T15:38:17.784Z",
+      "purpose": "Test: exceeds max_tx_amount of 300"
+    },
+    {
+      "id": "tx_1792869027028_yuyme",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xDEMOUNKNOWNR0000000000000000000000",
+      "toLabel": "Unknown Recipient",
+      "amountUSD": 50,
+      "status": "blocked",
+      "policyId": "pol_1792856297666_v0gzp",
+      "policyName": "Test Policy E2E",
+      "blockReason": "Transfer permission has expired; Policy \"Test Policy E2E\": Recipient not in allowed list",
+      "riskScore": 80,
+      "riskFlags": [
+        "Permission expired",
+        "Policy: recipient not allowed"
+      ],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T19:10:27.027Z",
+      "purpose": "general payment"
+    },
+    {
+      "id": "tx_1792869035814_2p9hk",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xDEMOUNKNOWNR0000000000000000000000",
+      "toLabel": "Unknown Recipient",
+      "amountUSD": 50,
+      "status": "blocked",
+      "policyId": "pol_1792856297666_v0gzp",
+      "policyName": "Test Policy E2E",
+      "blockReason": "Transfer permission has expired; Policy \"Test Policy E2E\": Recipient not in allowed list",
+      "riskScore": 80,
+      "riskFlags": [
+        "Permission expired",
+        "Policy: recipient not allowed"
+      ],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T19:10:35.813Z",
+      "purpose": "general payment"
+    },
+    {
+      "id": "tx_1792870019333_9v7zy",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "fromAddress": "0x3C44CdDdB6a900fa2b585dd299e03d12FA429640",
+      "toAddress": "0xDEMOUNKNOWNR0000000000000000000000",
+      "toLabel": "Unknown Recipient",
+      "amountUSD": 10,
+      "status": "blocked",
+      "policyId": "pol_1792856297666_v0gzp",
+      "policyName": "Test Policy E2E",
+      "blockReason": "Transfer permission has expired; Policy \"Test Policy E2E\": Recipient not in allowed list",
+      "riskScore": 80,
+      "riskFlags": [
+        "Permission expired",
+        "Policy: recipient not allowed"
+      ],
+      "network": "simulated",
+      "isSimulated": true,
+      "timestamp": "2026-10-24T19:26:59.331Z",
+      "purpose": "general payment"
+    }
+  ],
+  "approvals": [
+    {
+      "id": "apr_01",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "ownerId": "usr_01",
+      "transactionId": "tx_002",
+      "reason": "High-value DeFi deposit requires owner approval per Treasury Operations Policy",
+      "requestedAmount": 9500,
+      "toAddress": "0xUniswapV3Pool000000000000000000000000000",
+      "toLabel": "Uniswap V3 Pool",
+      "status": "approved",
+      "policyViolations": [
+        "Amount $9,500 near $8,000 approval threshold"
+      ],
+      "riskScore": 55,
+      "requestedAt": "2025-01-15T15:00:00Z",
+      "expiresAt": "2025-01-15T17:00:00Z",
+      "respondedAt": "2026-10-24T14:35:58.811Z",
+      "notes": "Approved via E2E test"
+    },
+    {
+      "id": "apr_02",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "ownerId": "usr_01",
+      "transactionId": "tx_008",
+      "reason": "Compound deposit exceeds single-owner-approval threshold",
+      "requestedAmount": 12000,
+      "toAddress": "0xCompound000000000000000000000000000000001",
+      "toLabel": "Compound Protocol",
+      "status": "rejected",
+      "policyViolations": [
+        "Amount $12,000 exceeds $8,000 approval threshold"
+      ],
+      "riskScore": 45,
+      "requestedAt": "2025-01-13T14:00:00Z",
+      "respondedAt": "2025-01-13T14:22:00Z",
+      "expiresAt": "2025-01-13T16:00:00Z",
+      "notes": "Rejected: Insufficient context for large Compound deposit. Resubmit with detailed justification."
+    }
+  ],
+  "riskAlerts": [
+    {
+      "id": "ra_01",
+      "agentId": "agt_04",
+      "agentName": "RogueTest",
+      "transactionId": "tx_006",
+      "level": "critical",
+      "title": "Wallet Drain Attempt Blocked",
+      "description": "Suspended agent attempted to send $99,999 to an unapproved contract",
+      "explanation": "PolicyGuard blocked this transaction because: (1) Agent agt_04 has been suspended and holds zero permissions, (2) the destination contract is not on the approved-contracts list, (3) the requested amount ($99,999) exceeds every configured spending limit. Risk score: 99/100. Note: The AI risk model's score is advisory – the block was enforced by the smart-wallet validation layer independently of any AI signal.",
+      "timestamp": "2025-01-10T22:44:00Z",
+      "acknowledged": false,
+      "policyViolated": "All active policies"
+    },
+    {
+      "id": "ra_02",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "transactionId": "tx_003",
+      "level": "high",
+      "title": "Unapproved Recipient Blocked",
+      "description": "PayBot Alpha attempted a $4,800 payment to an address not in the approved recipient list",
+      "explanation": "The destination address '0xUnknown...' is not present in the Supplier Payments Policy approved-recipient list. Additionally, the amount ($4,800) exceeds the per-transaction limit ($2,000) and the request arrived outside the configured operating hours (08:00-18:00 UTC). Three independent policy rules triggered a block. Risk score: 88/100.",
+      "timestamp": "2025-01-15T11:22:00Z",
+      "acknowledged": false,
+      "policyViolated": "Supplier Payments Policy"
+    },
+    {
+      "id": "ra_03",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "level": "medium",
+      "title": "Near Daily Spending Threshold",
+      "description": "TreasuryBot has used 35% of its daily limit ($8,750 / $25,000)",
+      "explanation": "Current daily spending velocity is elevated relative to historical average. This is an advisory signal only – no transaction has been blocked. Monitoring will escalate if the 80% threshold is reached.",
+      "timestamp": "2025-01-15T15:01:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "ra_04",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "level": "medium",
+      "title": "Approval Request Pending",
+      "description": "TreasuryBot has a pending approval request for $9,500 expiring in 2 hours",
+      "explanation": "The approval request apr_01 will auto-reject at 17:00 UTC if not responded to. The pending transaction (tx_002) is currently on hold.",
+      "timestamp": "2025-01-15T15:00:00Z",
+      "acknowledged": false
+    },
+    {
+      "id": "ra_1792856297729_8f6o9",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "transactionId": "tx_1792856297727_khpsk",
+      "level": "high",
+      "title": "Transaction Blocked – PayBot Alpha",
+      "description": "$100 to Unapproved Vendor was blocked by policy",
+      "explanation": "Policy enforcement blocked this transaction. Reasons: Transfer permission has expired. Policy \"Test Policy E2E\": Recipient not in allowed list. Risk score: 80/100. Note: AI risk scores are advisory only — this block was enforced by server-side policy rules, not by the AI model.",
+      "timestamp": "2026-10-24T15:38:17.725Z",
+      "acknowledged": false,
+      "policyViolated": "Test Policy E2E"
+    },
+    {
+      "id": "ra_1792856297787_y9lec",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "transactionId": "tx_1792856297786_23yl9",
+      "level": "high",
+      "title": "Transaction Blocked – PayBot Alpha",
+      "description": "$400 to Approved Vendor was blocked by policy",
+      "explanation": "Policy enforcement blocked this transaction. Reasons: Transfer permission has expired. Policy \"Test Policy E2E\": Amount exceeds max $300. Risk score: 70/100. Note: AI risk scores are advisory only — this block was enforced by server-side policy rules, not by the AI model.",
+      "timestamp": "2026-10-24T15:38:17.784Z",
+      "acknowledged": false,
+      "policyViolated": "Test Policy E2E"
+    },
+    {
+      "id": "ra_1792869027029_vligr",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "transactionId": "tx_1792869027028_yuyme",
+      "level": "high",
+      "title": "Transaction Blocked – PayBot Alpha",
+      "description": "$50 to Unknown Recipient was blocked by policy",
+      "explanation": "Policy enforcement blocked this transaction. Reasons: Transfer permission has expired. Policy \"Test Policy E2E\": Recipient not in allowed list. Risk score: 80/100. Note: AI risk scores are advisory only — this block was enforced by server-side policy rules, not by the AI model.",
+      "timestamp": "2026-10-24T19:10:27.027Z",
+      "acknowledged": false,
+      "policyViolated": "Test Policy E2E"
+    },
+    {
+      "id": "ra_1792869035815_go1cz",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "transactionId": "tx_1792869035814_2p9hk",
+      "level": "high",
+      "title": "Transaction Blocked – PayBot Alpha",
+      "description": "$50 to Unknown Recipient was blocked by policy",
+      "explanation": "Policy enforcement blocked this transaction. Reasons: Transfer permission has expired. Policy \"Test Policy E2E\": Recipient not in allowed list. Risk score: 80/100. Note: AI risk scores are advisory only — this block was enforced by server-side policy rules, not by the AI model.",
+      "timestamp": "2026-10-24T19:10:35.813Z",
+      "acknowledged": false,
+      "policyViolated": "Test Policy E2E"
+    },
+    {
+      "id": "ra_1792870019335_fv5hj",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "transactionId": "tx_1792870019333_9v7zy",
+      "level": "high",
+      "title": "Transaction Blocked – PayBot Alpha",
+      "description": "$10 to Unknown Recipient was blocked by policy",
+      "explanation": "Policy enforcement blocked this transaction. Reasons: Transfer permission has expired. Policy \"Test Policy E2E\": Recipient not in allowed list. Risk score: 80/100. Note: AI risk scores are advisory only — this block was enforced by server-side policy rules, not by the AI model.",
+      "timestamp": "2026-10-24T19:26:59.331Z",
+      "acknowledged": false,
+      "policyViolated": "Test Policy E2E"
+    }
+  ],
+  "lastUpdated": "2026-10-24T19:28:31.595Z",
+  "guardians": [],
+  "recoveryRequests": [],
+  "gasQuotas": [
+    {
+      "id": "gq_1792870111556_df44n",
+      "agentId": "agt_03",
+      "agentName": "InvoiceBot",
+      "dailyGasLimitUSD": 10,
+      "dailyGasUsedUSD": 0,
+      "monthlyGasLimitUSD": 200,
+      "monthlyGasUsedUSD": 0,
+      "totalSponsoredUSD": 0,
+      "paymasterConfigured": false,
+      "lastReset": "2026-10-24T19:28:31.556Z"
+    },
+    {
+      "id": "gq_1792870111568_ke2yq",
+      "agentId": "agt_01",
+      "agentName": "PayBot Alpha",
+      "dailyGasLimitUSD": 10,
+      "dailyGasUsedUSD": 0,
+      "monthlyGasLimitUSD": 200,
+      "monthlyGasUsedUSD": 0,
+      "totalSponsoredUSD": 0,
+      "paymasterConfigured": false,
+      "lastReset": "2026-10-24T19:28:31.568Z"
+    },
+    {
+      "id": "gq_1792870111580_pfu6s",
+      "agentId": "agt_04",
+      "agentName": "RogueTest",
+      "dailyGasLimitUSD": 10,
+      "dailyGasUsedUSD": 0,
+      "monthlyGasLimitUSD": 200,
+      "monthlyGasUsedUSD": 0,
+      "totalSponsoredUSD": 0,
+      "paymasterConfigured": false,
+      "lastReset": "2026-10-24T19:28:31.580Z"
+    },
+    {
+      "id": "gq_1792870111594_4ngoe",
+      "agentId": "agt_02",
+      "agentName": "TreasuryBot",
+      "dailyGasLimitUSD": 10,
+      "dailyGasUsedUSD": 0,
+      "monthlyGasLimitUSD": 200,
+      "monthlyGasUsedUSD": 0,
+      "totalSponsoredUSD": 0,
+      "paymasterConfigured": false,
+      "lastReset": "2026-10-24T19:28:31.594Z"
+    }
+  ],
+  "attackScenarios": [
+    {
+      "id": "atk_excessive_spend",
+      "name": "Excessive Spend Attack",
+      "description": "Attempts a transaction that far exceeds the agent's per-tx limit ($99,999).",
+      "attackType": "excessive_spend",
+      "expectedOutcome": "blocked",
+      "status": "idle"
+    },
+    {
+      "id": "atk_unapproved_recipient",
+      "name": "Unapproved Recipient Attack",
+      "description": "Sends funds to an address not in the allowed recipients list.",
+      "attackType": "unapproved_recipient",
+      "expectedOutcome": "blocked",
+      "status": "idle"
+    },
+    {
+      "id": "atk_expired_permission",
+      "name": "Expired Permission Attack",
+      "description": "Attempts a transaction after simulating permission expiry.",
+      "attackType": "expired_permission",
+      "expectedOutcome": "blocked",
+      "status": "idle"
+    },
+    {
+      "id": "atk_prohibited_contract",
+      "name": "Prohibited Contract Attack",
+      "description": "Calls a contract address that is not in the allowed contracts list.",
+      "attackType": "prohibited_contract",
+      "expectedOutcome": "blocked",
+      "status": "idle"
+    },
+    {
+      "id": "atk_rapid_fire",
+      "name": "Rapid-Fire Transaction Attack",
+      "description": "Attempts many small transactions in quick succession to drain daily budget.",
+      "attackType": "rapid_fire",
+      "expectedOutcome": "blocked",
+      "status": "idle"
+    }
+  ],
+  "anomalyEvents": []
+}
